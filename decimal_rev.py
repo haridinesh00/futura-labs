@@ -6,7 +6,6 @@ inp = input("Enter a number: ")
 ext = inp.split('.')
 
 #print(ext)
-# print(ext)
 
 print("Number before decimal point : ",ext[0], "\nNumber after decimal point : ", ext[1])
 
