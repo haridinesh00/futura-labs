@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+{%load crispy_forms_tags %}
 
   <head>
     <!-- Required meta tags -->
@@ -51,8 +52,8 @@
 <!--                      <option>Argentina</option>-->
 <!--                    </select>-->
 <!--                  </div>-->
-                  {{worker_form}}
-                  {{user_form}}
+                  {{ worker_form|crispy }}
+                  {{ user_form|crispy }}
 <!--                  <div class="form-group">-->
 <!--                    <input name="password1" type="password" class="form-control form-control-lg"  placeholder="Password">-->
 <!--                  </div>-->
@@ -66,7 +67,7 @@
 <!--                    </div>-->
 <!--                  </div>-->
                   <div class="mt-3">
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="btn btn-sm btn-success">Submit</button>
                   </div>
 <!--                  <div class="text-center mt-4 font-weight-light"> Already have an account? <a href=" {% static 'login.html' %} " class="text-primary">Login</a>-->
 <!--                  </div>-->
