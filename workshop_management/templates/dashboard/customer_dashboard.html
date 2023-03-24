@@ -318,7 +318,9 @@
                   <div>
                     <div class="d-flex align-items-center">
                       <div class="sidebar-profile-img">
-                        <img src=" {% static 'dashboard/images/faces/face28.png' %} " alt="image">
+                        {% for i in data %}
+                        {% if i.user ==  %}
+                        <img src=" {{i.profile_pic.url}} " alt="image">
                       </div>
                       <div class="sidebar-profile-text">
                         <p class="mb-1">Henry Klein</p>
@@ -350,41 +352,20 @@
             </li>
           </ul>
         </nav>
-
-        <div class="main-panel">
-          <div class="content-wrapper">
-            <div class="row" id="proBanner">
-              <div class="col-12">
-                <span class="d-flex align-items-center purchase-popup">
-                  <table class="table">
-                          <thead>
-                            <tr>
-                              <th scope="col">Name</th>
-                              <th scope="col">Email</th>
-                              <th scope="col">Phone</th>
-                              <th scope="col">DOB</th>
-                              <th scope="col">Gender</th>
-                              <th scope="col">Address</th>
-                              <th scope="col">Profile Pic</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {% for i in data %}
-                            <tr>
-                              <th scope="row">{{i.name}}</th>
-                              <th scope="row">{{i.email}}</th>
-                              <th scope="row">{{i.phone}}</th>
-                              <th scope="row">{{i.dob}}</th>
-                              <th scope="row">{{i.gender}}</th>
-                              <th scope="row">{{i.address}}</th>
-                              <th scope="row"><img src="{{i.profile_pic.url}}" alt="Smiley face" width="250" height="250"></th>
-                            </tr>
-                            {% endfor %}
-                          </tbody>
-                        </table>
-                </span>
-              </div>
-            </div>
+<!--          <img src="{{i.profile_pic.url}}" alt="Smiley face" width="250" height="250">-->
+<!--        &lt;!&ndash; partial &ndash;&gt;-->
+<!--        <div class="main-panel">-->
+<!--          <div class="content-wrapper">-->
+<!--            <div class="row" id="proBanner">-->
+<!--              <div class="col-12">-->
+<!--                <span class="d-flex align-items-center purchase-popup">-->
+<!--                  <p>Like what you see? Check out our premium version for more.</p>-->
+<!--                  <a href="https://github.com/BootstrapDash/ConnectPlusAdmin-Free-Bootstrap-Admin-Template" target="_blank" class="btn ml-auto download-button">Download Free Version</a>-->
+<!--                  <a href="http://www.bootstrapdash.com/demo/connect-plus/jquery/template/" target="_blank" class="btn purchase-button">Upgrade To Pro</a>-->
+<!--                  <i class="mdi mdi-close" id="bannerClose"></i>-->
+<!--                </span>-->
+<!--              </div>-->
+<!--            </div>-->
 <!--            <div class="d-xl-flex justify-content-between align-items-start">-->
 <!--              <h2 class="text-dark font-weight-bold mb-2"> Overview dashboard </h2>-->
 <!--              <div class="d-sm-flex justify-content-xl-between align-items-center mb-2">-->

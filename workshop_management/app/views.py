@@ -2,7 +2,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 
-from app.forms import LoginRegister, WorkerForm
+from app.forms import LoginRegister, WorkerForm, CustomerForm
+from app.models import Customer, Worker
 
 
 # Create your views here.
@@ -70,7 +71,13 @@ def dashboard(requests):
 
 
 def worker_dashboard(requests):
-    return render(requests, 'dashboard/worker_dashboard.html')
+    data = Worker.objects.all()
+    return render(requests, 'dashboard/worker_dashboard.html', {'data': data})
+
+
+def customer_dashboard(request):
+    data = Customer.objects.all()
+    return render(request, 'dashboard/customer_dashboard.html', {'data': data})
 
 
 def blank(requests):
@@ -84,12 +91,12 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            if user.is_staff:
-                return redirect('dashboard')
+            if user.is_customer:
+                return redirect('customer_dashboard')
             elif user.is_worker:
                 return redirect('worker_dashboard')
-            # elif user.is_user:
-            #     return redirect('user_home')
+            elif user.is_user:
+                return redirect('user_home')
             else:
                 messages.info(request, 'Invalid Credentials')
     return render(request, 'login.html')
@@ -100,7 +107,7 @@ def worker_register(request):
     worker_form = WorkerForm()
     if request.method == 'POST':
         user_form = LoginRegister(request.POST)
-        worker_form = WorkerForm(request.POST)
+        worker_form = WorkerForm(request.POST, request.FILES)
         if user_form.is_valid() and worker_form.is_valid():
             u = user_form.save(commit=False)
             u.is_worker = True
@@ -111,3 +118,21 @@ def worker_register(request):
             messages.info(request, 'Worker Registration Successful')
             return redirect('login_view')
     return render(request, 'dashboard/register.html', {'user_form': user_form, 'worker_form': worker_form})
+
+
+def customer_register(request):
+    user_form = LoginRegister()
+    customer_form = CustomerForm()
+    if request.method == 'POST':
+        user_form = LoginRegister(request.POST)
+        customer_form = CustomerForm(request.POST, request.FILES)
+        if user_form.is_valid() and customer_form.is_valid():
+            u = user_form.save(commit=False)
+            u.is_customer = True
+            u.save()
+            customer = customer_form.save(commit=False)
+            customer.user = u
+            customer.save()
+            messages.info(request, 'Worker Registration Successful')
+            return redirect('login_view')
+    return render(request, 'dashboard/customer_register.html', {'user_form': user_form, 'customer_form': customer_form})
