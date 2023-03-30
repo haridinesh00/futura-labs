@@ -95,8 +95,8 @@ def login_view(request):
                 return redirect('customer_dashboard')
             elif user.is_worker:
                 return redirect('worker_dashboard')
-            elif user.is_user:
-                return redirect('user_home')
+            elif user.is_staff:
+                return redirect('admin_workers')
             else:
                 messages.info(request, 'Invalid Credentials')
     return render(request, 'login.html')
@@ -136,3 +136,4 @@ def customer_register(request):
             messages.info(request, 'Worker Registration Successful')
             return redirect('login_view')
     return render(request, 'dashboard/customer_register.html', {'user_form': user_form, 'customer_form': customer_form})
+

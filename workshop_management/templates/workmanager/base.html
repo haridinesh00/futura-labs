@@ -351,18 +351,14 @@
         </nav>
 <!--          <img src="{{i.profile_pic.url}}" alt="Smiley face" width="250" height="250">-->
 <!--        &lt;!&ndash; partial &ndash;&gt;-->
-<!--        <div class="main-panel">-->
-<!--          <div class="content-wrapper">-->
-<!--            <div class="row" id="proBanner">-->
-<!--              <div class="col-12">-->
-<!--                <span class="d-flex align-items-center purchase-popup">-->
-<!--                  <p>Like what you see? Check out our premium version for more.</p>-->
-<!--                  <a href="https://github.com/BootstrapDash/ConnectPlusAdmin-Free-Bootstrap-Admin-Template" target="_blank" class="btn ml-auto download-button">Download Free Version</a>-->
-<!--                  <a href="http://www.bootstrapdash.com/demo/connect-plus/jquery/template/" target="_blank" class="btn purchase-button">Upgrade To Pro</a>-->
-<!--                  <i class="mdi mdi-close" id="bannerClose"></i>-->
-<!--                </span>-->
-<!--              </div>-->
-<!--            </div>-->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row" id="proBanner">
+              {% block content %}
+
+              {% endblock %}
+              </div>
+            </div>
 <!--            <div class="d-xl-flex justify-content-between align-items-start">-->
 <!--              <h2 class="text-dark font-weight-bold mb-2"> Overview dashboard </h2>-->
 <!--              <div class="d-sm-flex justify-content-xl-between align-items-center mb-2">-->
@@ -571,7 +567,7 @@
 <!--          &lt;!&ndash; partial &ndash;&gt;-->
 <!--        </div>-->
 <!--        &lt;!&ndash; main-panel ends &ndash;&gt;-->
-      </div>
+<!--      </div>-->
       <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->

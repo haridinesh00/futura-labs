@@ -24,3 +24,11 @@ class Worker(models.Model):
     gender = models.CharField(max_length=10)
     address = models.TextField(max_length=150)
     profile_pic = models.FileField(upload_to='documents/')
+
+
+class Feedback(models.Model):
+    user = models.ForeignKey(Login, on_delete=models.DO_NOTHING)
+    date = models.DateField(auto_now=True)
+    message = models.CharField(max_length=150)
+    reply = models.CharField(max_length=150, null=True, blank=True)
+

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from app import views
+from app import views, admin_views, customer_views, workmanager_views
 
 urlpatterns = [
     path('', views.landing, name="landing"),
@@ -24,4 +24,23 @@ urlpatterns = [
     path('worker_dashboard', views.worker_dashboard, name="worker_dashboard"),
     path('customer_register', views.customer_register, name="customer_register"),
     path('customer_dashboard', views.customer_dashboard, name="customer_dashboard"),
+
+
+    #admin
+
+    path('admin_dash', admin_views.dash, name="admin_dash"),
+    path('admin_workers', admin_views.worker_dashboard, name="admin_workers"),
+    path('admin_customers', admin_views.customer_dashboard, name="admin_customers"),
+    path('delete/<int:id>/', admin_views.delete, name="delete"),
+    path('delete_cus/<int:id>/', admin_views.delete_cus, name="delete_cus"),
+    path('update/<int:id>/', admin_views.update, name="update"),
+
+    #customer
+
+    path('customer_dash', customer_views.dash, name="customer_dash"),
+
+    #work manager
+
+    path('workmanager_dash', workmanager_views.dash, name="workmanager_dash"),
 ]
+
