@@ -37,4 +37,4 @@ class FeedbackForm(forms.ModelForm):
     class Meta:
         model = Feedback
         fields = '__all__'
-        exclude = ("reply",)
+        exclude = ("reply", "user",)

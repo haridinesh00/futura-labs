@@ -1,7 +1,8 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from app.forms import WorkerForm
-from app.models import Worker, Customer
+from app.models import Worker, Customer, Feedback
 
 
 def dash(request):
@@ -39,3 +40,20 @@ def update(requests, id):
             form.save()
             return redirect('admin_workers')
     return render(requests, 'admin/update.html', {'form': form})
+
+
+def feedbacks(request):
+    u = request.user
+    data = Feedback.objects.all()
+    return render(request, 'admin/feedbacks.html', {'data': data})
+
+
+def reply_feedback(request, id):
+    feedback = Feedback.objects.get(id=id)
+    if request.method == 'POST':
+        r = request.POST.get('reply')
+        feedback.reply = r
+        feedback.save()
+        messages.info(request, 'Reply send')
+        return redirect('feedbacks')
+    return render(request, 'admin/reply_feedback.html', {'feedback': feedback})

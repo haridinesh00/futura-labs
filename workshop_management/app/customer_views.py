@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 
 from app.forms import FeedbackForm
+from app.models import Feedback
 
 
 def dash(request):
@@ -21,5 +22,13 @@ def feedback_register(request):
             # return redirect('login_view')
         else:
             print("Fill all required fields")
-    return render(request, 'dashboard/customer_register.html', {'feedback_form': feedback_form})
+    return render(request, 'customer/feedback.html', {'feedback_form': feedback_form})
+
+
+def feedback_view(request):
+    u = request.user
+    data = Feedback.objects.filter(user=u)
+    return render(request, 'customer/feedback_view.html', {'data': data})
+
+
 

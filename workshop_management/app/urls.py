@@ -34,10 +34,15 @@ urlpatterns = [
     path('delete/<int:id>/', admin_views.delete, name="delete"),
     path('delete_cus/<int:id>/', admin_views.delete_cus, name="delete_cus"),
     path('update/<int:id>/', admin_views.update, name="update"),
+    path('feedbacks', admin_views.feedbacks, name="feedbacks"),
+    path('reply_feedback/<int:id>/', admin_views.reply_feedback, name="reply_feedback"),
 
     #customer
 
     path('customer_dash', customer_views.dash, name="customer_dash"),
+    path('feedback_register', customer_views.feedback_register, name="feedback_register"),
+    path('feedback_view', customer_views.feedback_view, name="feedback_view"),
+
 
     #work manager
 

@@ -92,7 +92,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             if user.is_customer:
-                return redirect('customer_dashboard')
+                return redirect('customer_dash')
             elif user.is_worker:
                 return redirect('worker_dashboard')
             elif user.is_staff:
