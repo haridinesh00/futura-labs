@@ -24,6 +24,7 @@ urlpatterns = [
     path('worker_dashboard', views.worker_dashboard, name="worker_dashboard"),
     path('customer_register', views.customer_register, name="customer_register"),
     path('customer_dashboard', views.customer_dashboard, name="customer_dashboard"),
+    path('logout_view', views.logout_view, name="logout_view"),
 
 
     #admin

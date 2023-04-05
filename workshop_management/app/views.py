@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
 from app.forms import LoginRegister, WorkerForm, CustomerForm
@@ -137,3 +137,7 @@ def customer_register(request):
             return redirect('login_view')
     return render(request, 'dashboard/customer_register.html', {'user_form': user_form, 'customer_form': customer_form})
 
+
+def logout_view(request):
+    logout(request)
+    return redirect('login_view')
