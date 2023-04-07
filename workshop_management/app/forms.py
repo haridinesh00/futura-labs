@@ -2,12 +2,20 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from app.models import Customer, Worker, Login, Feedback
 
+from app.models import WorkerCategory
+
 
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = '__all__'
         exclude = ("user",)
+
+
+class WorkerCategoryForm(forms.ModelForm):
+    class Meta:
+        model = WorkerCategory
+        fields = ('title',)
 
 
 class WorkerForm(forms.ModelForm):

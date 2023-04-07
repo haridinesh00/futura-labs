@@ -15,8 +15,13 @@ class Customer(models.Model):
     profile_pic = models.FileField(upload_to='documents/')
 
 
+class WorkerCategory(models.Model):
+    title = models.CharField(max_length=20)
+
+
 class Worker(models.Model):
     user = models.ForeignKey(Login, on_delete=models.CASCADE)
+    category = models.ForeignKey(WorkerCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=42)
     email = models.EmailField(max_length=75)
     phone = models.CharField(max_length=15)
@@ -31,4 +36,3 @@ class Feedback(models.Model):
     date = models.DateField(auto_now=True)
     message = models.CharField(max_length=150)
     reply = models.CharField(max_length=150, null=True, blank=True)
-

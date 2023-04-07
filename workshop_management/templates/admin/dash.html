@@ -2,5 +2,9 @@
 {%load crispy_forms_tags %}
 {% block content %}
 
-Hello
+<div class="card">
+  <div class="card-body">
+      Welcome {{request.user}}
+  </div>
+</div>
 {% endblock %}
