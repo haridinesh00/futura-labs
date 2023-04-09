@@ -96,34 +96,13 @@ def login_view(request):
             login(request, user)
             if user.is_customer:
                 return redirect('customer_dash')
-            elif user.is_worker:
+            elif user.is_worker and Worker.objects.filter(status == 1):
                 return redirect('worker_dashboard')
             elif user.is_staff:
                 return redirect('admin_dash')
             else:
                 messages.info(request, 'Invalid Credentials')
     return render(request, 'login.html')
-
-
-def worker_register(request):
-    user_form = LoginRegister()
-    worker_form = WorkerForm()
-    category_form = WorkerCategoryForm()
-    if request.method == 'POST':
-        user_form = LoginRegister(request.POST)
-        worker_form = WorkerForm(request.POST, request.FILES)
-        category_form = WorkerCategoryForm(request.POST)
-        if user_form.is_valid() and worker_form.is_valid() and category_form.is_valid():
-            u = user_form.save(commit=False)
-            u.is_worker = True
-            u.save()
-            worker = worker_form.save(commit=False)
-            worker.user = u
-            worker.save()
-            category_form.save()
-            messages.info(request, 'Worker Registration Successful')
-            return redirect('login_view')
-    return render(request, 'dashboard/register.html', {'user_form': user_form, 'worker_form': worker_form, 'category': category_form})
 
 
 def customer_register(request):

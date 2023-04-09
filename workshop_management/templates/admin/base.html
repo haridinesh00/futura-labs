@@ -127,7 +127,7 @@
                       <i class="mdi mdi-account-outline ml-1"></i>
                     </span>
                   </a>
-                  <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href=" {% static 'javascript:void(0)' %} ">
+                  <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="{% url 'admin:index' %}">
                     <span>Settings</span>
                     <i class="mdi mdi-settings"></i>
                   </a>
@@ -282,12 +282,18 @@
                 <span class="menu-title">Feedbacks</span>
               </a>
             </li>
-<!--            <li class="nav-item">-->
-<!--              <a class="nav-link" href=" {% static 'pages/tables/basic-table.html' %} ">-->
-<!--                <span class="icon-bg"><i class="mdi mdi-table-large menu-icon"></i></span>-->
-<!--                <span class="menu-title">Tables</span>-->
-<!--              </a>-->
-<!--            </li>-->
+            <li class="nav-item">
+              <a class="nav-link" href=" {% url 'category_register' %} ">
+                <span class="icon-bg"><i class="mdi mdi-table-large menu-icon"></i></span>
+                <span class="menu-title">Categories</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href=" {% url 'worker_register' %} ">
+                <span class="icon-bg"><i class="mdi mdi-account-plus menu-icon"></i></span>
+                <span class="menu-title">Register Workers</span>
+              </a>
+            </li>
 <!--            <li class="nav-item">-->
 <!--              <a class="nav-link" data-toggle="collapse" href=" {% static '#auth' %} " aria-expanded="false" aria-controls="auth">-->
 <!--                <span class="icon-bg"><i class="mdi mdi-lock menu-icon"></i></span>-->
@@ -332,7 +338,7 @@
             </li>
             <li class="nav-item sidebar-user-actions">
               <div class="sidebar-user-menu">
-                <a href="#" class="nav-link"><i class="mdi mdi-settings menu-icon"></i>
+                <a href="{% url 'admin:index' %}" class="nav-link"><i class="mdi mdi-settings menu-icon"></i>
                   <span class="menu-title">Settings</span>
                 </a>
               </div>

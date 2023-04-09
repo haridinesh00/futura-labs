@@ -9,20 +9,23 @@ class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = '__all__'
-        exclude = ("user",)
+        exclude = ("user", "category",)
 
 
 class WorkerCategoryForm(forms.ModelForm):
+
+    # description = forms.CharField(max_length=25)
+
     class Meta:
         model = WorkerCategory
-        fields = ('title',)
+        fields = ("title", "description", )
 
 
 class WorkerForm(forms.ModelForm):
     class Meta:
         model = Worker
         fields = '__all__'
-        exclude = ("user",)
+        exclude = ("user", "status",)
 
 
 class LoginForm(forms.ModelForm):

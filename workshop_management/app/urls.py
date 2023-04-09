@@ -20,7 +20,6 @@ urlpatterns = [
     path('typography', views.typography, name="typography"),
     path('blank', views.blank, name="blank"),
     path('login_view', views.login_view, name="login_view"),
-    path('worker_register', views.worker_register, name="worker_register"),
     path('worker_dashboard', views.worker_dashboard, name="worker_dashboard"),
     path('customer_register', views.customer_register, name="customer_register"),
     path('customer_dashboard', views.customer_dashboard, name="customer_dashboard"),
@@ -37,6 +36,11 @@ urlpatterns = [
     path('update/<int:id>/', admin_views.update, name="update"),
     path('feedbacks', admin_views.feedbacks, name="feedbacks"),
     path('reply_feedback/<int:id>/', admin_views.reply_feedback, name="reply_feedback"),
+    path('category_register', admin_views.category_register, name="category_register"),
+    path('worker_register', admin_views.worker_register, name="worker_register"),
+    path('accept/<int:id>/', admin_views.accept, name="accept"),
+    path('reject/<int:id>/', admin_views.reject, name="reject"),
+    path('new_request', admin_views.new_request, name="new_request"),
 
     #customer
 

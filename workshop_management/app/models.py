@@ -17,10 +17,14 @@ class Customer(models.Model):
 
 class WorkerCategory(models.Model):
     title = models.CharField(max_length=20)
+    description = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.title
 
 
 class Worker(models.Model):
-    user = models.ForeignKey(Login, on_delete=models.CASCADE)
+    user = models.ForeignKey(Login, on_delete=models.CASCADE, related_name="worker")
     category = models.ForeignKey(WorkerCategory, on_delete=models.CASCADE)
     name = models.CharField(max_length=42)
     email = models.EmailField(max_length=75)
@@ -29,6 +33,7 @@ class Worker(models.Model):
     gender = models.CharField(max_length=10)
     address = models.TextField(max_length=150)
     profile_pic = models.FileField(upload_to='documents/')
+    status = models.IntegerField(default=0)
 
 
 class Feedback(models.Model):
