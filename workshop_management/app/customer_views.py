@@ -19,7 +19,7 @@ def feedback_register(request):
             feed.user = u
             feed.save()
             messages.info(request, 'Feedback Submitted')
-            # return redirect('login_view')
+            return redirect('feedback_view')
         else:
             print("Fill all required fields")
     return render(request, 'customer/feedback.html', {'feedback_form': feedback_form})
@@ -29,6 +29,4 @@ def feedback_view(request):
     u = request.user
     data = Feedback.objects.filter(user=u)
     return render(request, 'customer/feedback_view.html', {'data': data})
-
-
 

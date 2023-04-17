@@ -1,4 +1,4 @@
-{% extends "admin/base_admin.html" %}
+{% extends "workmanager/base.html" %}
 {%load crispy_forms_tags %}
 {% block content %}
 <div>
@@ -7,8 +7,8 @@
                             <tr>
                               <th scope="col">User</th>
                               <th scope="col">Date</th>
-                              <th scope="col">Message</th>
-                              <th scope="col">Reply</th>
+                              <th scope="col">Start time</th>
+                              <th scope="col">End Time</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -16,13 +16,8 @@
                             <tr>
                               <th scope="row">{{i.user}}</th>
                               <th scope="row">{{i.date}}</th>
-                              <th scope="row">{{i.message}}</th>
-                              <th scope="row">{{i.reply}}</th>
-                                <th scope="row">
-                                    <a href="{% url 'reply_feedback' i.id %}">
-                                        <button type="button" class="btn btn-primary">Reply</button>
-                                    </a>
-                                </th>
+                              <th scope="row">{{i.start_time}}</th>
+                              <th scope="row">{{i.end_time}}</th>
                             </tr>
                             {% endfor %}
                           </tbody>

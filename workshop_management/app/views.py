@@ -2,12 +2,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
-from app.forms import LoginRegister, WorkerForm, CustomerForm, WorkerCategoryForm
-from app.models import Customer, Worker
-
-
-# Create your views here.
-# from app.forms import WorkerCategoryForm
+from app.forms import WorkerForm, WorkerCategoryForm, CustomerForm
+from app.models import Login
 
 
 def landing(requests):
@@ -16,6 +12,10 @@ def landing(requests):
 
 def error_page(requests):
     return render(requests, '404.html')
+
+
+def basic_elements(request):
+    return render(request, 'dashboard/basic_elements.html')
 
 
 def about(requests):
@@ -42,49 +42,51 @@ def testimonial(requests):
     return render(requests, 'testimonial.html')
 
 
-def Login(requests):
-    return render(requests, 'login.html')
-
-
-# ------------------------------------------------------------------
-
-
-def basicTable(requests):
-    return render(requests, 'dashboard/basic-table.html')
-
-
-def basicElements(requests):
-    return render(requests, 'dashboard/basic_elements.html')
-
-
-def buttons(requests):
-    return render(requests, 'dashboard/buttons.html')
-
-
-def register(requests):
-    return render(requests, 'dashboard/register.html')
-
-
-def typography(requests):
-    return render(requests, 'dashboard/typography.html')
-
-
-def dashboard(requests):
-    return render(requests, 'dashboard/dashboard.html')
-
-
+#
+#
+# def Login(requests):
+#     return render(requests, 'login.html')
+#
+#
+# # ------------------------------------------------------------------
+#
+#
+# def basicTable(requests):
+#     return render(requests, 'dashboard/basic-table.html')
+#
+#
+# def basicElements(requests):
+#     return render(requests, 'dashboard/basic_elements.html')
+#
+#
+# def buttons(requests):
+#     return render(requests, 'dashboard/buttons.html')
+#
+#
+# def register(requests):
+#     return render(requests, 'dashboard/register.html')
+#
+#
+# def typography(requests):
+#     return render(requests, 'dashboard/typography.html')
+#
+#
+# def dashboard(requests):
+#     return render(requests, 'dashboard/dashboard.html')
+#
+#
 def worker_dashboard(requests):
-    data = Worker.objects.all()
+    data = Login.objects.all()
     return render(requests, 'dashboard/worker_dashboard.html', {'data': data})
 
 
-def customer_dashboard(request):
-    data = Customer.objects.all()
-    return render(request, 'dashboard/customer_dashboard.html', {'data': data})
-
-
-def blank(requests):
-    return render(requests, 'dashboard/blank-page.html')
+# def customer_dashboard(request):
+#     data = Customer.objects.all()
+#     return render(request, 'dashboard/customer_dashboard.html', {'data': data})
+#
+#
+# def blank(requests):
+#     return render(requests, 'dashboard/blank-page.html')
 
 
 def login_view(request):
@@ -96,8 +98,8 @@ def login_view(request):
             login(request, user)
             if user.is_customer:
                 return redirect('customer_dash')
-            elif user.is_worker and Worker.objects.filter(status == 1):
-                return redirect('worker_dashboard')
+            elif user.is_worker:
+                return redirect('workmanager_dash')
             elif user.is_staff:
                 return redirect('admin_dash')
             else:
@@ -106,21 +108,16 @@ def login_view(request):
 
 
 def customer_register(request):
-    user_form = LoginRegister()
     customer_form = CustomerForm()
     if request.method == 'POST':
-        user_form = LoginRegister(request.POST)
         customer_form = CustomerForm(request.POST, request.FILES)
-        if user_form.is_valid() and customer_form.is_valid():
-            u = user_form.save(commit=False)
-            u.is_customer = True
-            u.save()
-            customer = customer_form.save(commit=False)
-            customer.user = u
-            customer.save()
+        if customer_form.is_valid():
+            user = customer_form.save(commit=False)
+            user.is_customer = True
+            user.save()
             messages.info(request, 'Worker Registration Successful')
             return redirect('login_view')
-    return render(request, 'dashboard/customer_register.html', {'user_form': user_form, 'customer_form': customer_form})
+    return render(request, 'dashboard/customer_register.html', {'customer_form': customer_form})
 
 
 def logout_view(request):

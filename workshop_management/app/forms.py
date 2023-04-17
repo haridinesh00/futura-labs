@@ -1,51 +1,69 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from app.models import Customer, Worker, Login, Feedback
+from app.models import Login, Feedback, WorkSchedule
 
 from app.models import WorkerCategory
+from django.contrib.admin import widgets
 
 
-class CustomerForm(forms.ModelForm):
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
+class TimeInput(forms.TimeInput):
+    input_type = 'time'
+
+
+class CustomerForm(UserCreationForm):
     class Meta:
-        model = Customer
-        fields = '__all__'
-        exclude = ("user", "category",)
+        model = Login
+        fields = ("name", "email", "phone", "profile_pic", "username", "password1", "password2")
 
 
 class WorkerCategoryForm(forms.ModelForm):
-
     # description = forms.CharField(max_length=25)
 
     class Meta:
         model = WorkerCategory
-        fields = ("title", "description", )
+        fields = ("title", "description",)
 
 
-class WorkerForm(forms.ModelForm):
+class WorkerForm(UserCreationForm):
     class Meta:
-        model = Worker
-        fields = '__all__'
-        exclude = ("user", "status",)
+        model = Login
+        fields = (
+            "category", "name", "email", "phone", "gender", "address", "profile_pic", "username", "password1",
+            "password2")
 
 
 class LoginForm(forms.ModelForm):
     class Meta:
         model = Login
-        fields = ('__all__')
+        fields = ("is_worker", "is_customer",)
 
 
-class LoginRegister(UserCreationForm):
-    username = forms.CharField()
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput, )
-    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput, )
-
-    class Meta:
-        model = Login
-        fields = ('username', 'password1', 'password2')
+# class LoginRegister(UserCreationForm):
+#     username = forms.CharField()
+#     password1 = forms.CharField(label='Password', widget=forms.PasswordInput, )
+#     password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput, )
+#
+#     class Meta:
+#         model = Login
+#         fields = ('username', 'password1', 'password2')
 
 
 class FeedbackForm(forms.ModelForm):
     class Meta:
         model = Feedback
-        fields = '__all__'
-        exclude = ("reply", "user",)
+        fields = ('message',)
+
+
+class ScheduleWork(forms.ModelForm):
+    date = forms.DateField(widget=DateInput)
+    start_time = forms.TimeField(widget=TimeInput)
+    end_time = forms.TimeField(widget=TimeInput)
+
+    class Meta:
+        model = WorkSchedule
+        fields = ('date', 'start_time', 'end_time', )
+

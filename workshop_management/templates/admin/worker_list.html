@@ -1,4 +1,4 @@
-{% extends "admin/base.html" %}
+{% extends "admin/base_admin.html" %}
 {%load crispy_forms_tags %}
 {% block content %}
 
@@ -9,9 +9,9 @@
                               <th scope="col">Name</th>
                               <th scope="col">Email</th>
                               <th scope="col">Phone</th>
-                              <th scope="col">DOB</th>
                               <th scope="col">Gender</th>
                               <th scope="col">Address</th>
+                              <th scope="col">Category</th>
                                 <th scope="col">Status</th>
                                 <th scope="col"></th>
                             </tr>
@@ -19,13 +19,16 @@
                           <tbody>
                             {% for i in data %}
                             <tr>
+                                {% if i.is_worker %}
+                                {% if i.profile_pic %}
                                 <th scope="row"><img src="{{i.profile_pic.url}}" alt="Smiley face" width="250" height="250"></th>
+                                {% endif %}
                               <th scope="row">{{i.name}}</th>
                               <th scope="row">{{i.email}}</th>
                               <th scope="row">{{i.phone}}</th>
-                              <th scope="row">{{i.dob}}</th>
                               <th scope="row">{{i.gender}}</th>
                               <th scope="row">{{i.address}}</th>
+                              <th scope="row">{{i.category}}</th>
                                 {% if i.status == 0 %}
                                 <th scope="row">Not Accepted</th>
                                 {% else %}
@@ -42,6 +45,7 @@
                                         <input class="btn btn-primary" type="Submit" value="Delete">
                                     </form>
                                 </th>
+                                {% endif %}
                             </tr>
                             {% endfor %}
                           </tbody>
