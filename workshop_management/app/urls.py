@@ -49,13 +49,23 @@ urlpatterns = [
     path('customer_dash', customer_views.dash, name="customer_dash"),
     path('feedback_register', customer_views.feedback_register, name="feedback_register"),
     path('feedback_view', customer_views.feedback_view, name="feedback_view"),
+    path('book_app', customer_views.book_app, name="book_app"),
+    path('book/<int:id>/', customer_views.book, name="book"),
+    path('appointment/<int:id>/', customer_views.appointment, name="appointment"),
+    path('book_history', customer_views.book_history, name="book_history"),
+    path('confirm_app', customer_views.confirm_app, name="confirm_app"),
 
 
     #work manager
 
     path('workmanager_dash', workmanager_views.dash, name="workmanager_dash"),
     path('schedule_work', workmanager_views.schedule_work, name="schedule_work"),
+    path('my_appointments', workmanager_views.my_appointments, name="my_appointments"),
     path('works', workmanager_views.works, name="works"),
+    path('delete_sch/<int:id>/', workmanager_views.delete_sch, name="delete_sch"),
+    path('update_sch/<int:id>/', workmanager_views.update_sch, name="update_sch"),
+    path('accept_app/<int:id>/', workmanager_views.accept_app, name="accept_app"),
+    path('reject_app/<int:id>/', workmanager_views.reject_app, name="reject_app"),
 
 ]
 

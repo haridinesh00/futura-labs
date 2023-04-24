@@ -1,8 +1,7 @@
-{% extends "workmanager/base.html" %}
+{% extends "customer/base.html" %}
 {%load crispy_forms_tags %}
 {% block content %}
-<div class="main-panel">
-          <div class="content-wrapper">
+<div class="content-wrapper">
 <!--            <div class="page-header">page-header-->
 <!--              <h3 class="page-title"> Form elements </h3>-->
 <!--              <nav aria-label="breadcrumb">-->
@@ -12,47 +11,42 @@
 <!--                </ol>-->
 <!--              </nav>-->
 <!--            </div>-->
-            <div class="row">
-              <div class="col-md-12 grid-margin stretch-card">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <table class="table">
+                      <table class="table">
                           <thead>
                             <tr>
-                              <th scope="col">User</th>
+                              <th scope="col">Staff</th>
                               <th scope="col">Date</th>
                               <th scope="col">Start time</th>
                               <th scope="col">End Time</th>
+                              <th scope="col">Book Appointment</th>
                             </tr>
                           </thead>
                           <tbody>
                             {% for i in data %}
                             <tr>
-                                {% if i.user.is_worker %}
+                                {% if i.schedule.user.is_worker %}
                               <th scope="row">{{i.user}}</th>
                               <th scope="row">{{i.date}}</th>
                               <th scope="row">{{i.start_time}}</th>
                               <th scope="row">{{i.end_time}}</th>
-                              <th scope="row">
-                                  <a href="{% url 'update_sch' i.id %}">
-                                      <button type="button" class="btn btn-primary">Update</button>
-                                  </a>
-                              </th>
                                 <th scope="row">
-                                    <form action="{% url 'delete_sch' i.id %}" method="POST" class="d-inline-block">
+                                    <form action="{% url 'appointment' i.id %}" method="POST" class="d-inline-block">
                                         {% csrf_token %}
-                                        <input class="btn btn-primary" type="Submit" value="Delete">
+                                        <input class="btn btn-primary" type="Submit" value="Book Appointment">
                                     </form>
                                 </th>
                                 {% endif %}
                             </tr>
                             {% endfor %}
                           </tbody>
-                    </table>
+                      </table>
                   </div>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
 </div>
 {% endblock %}

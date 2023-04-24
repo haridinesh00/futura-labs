@@ -137,7 +137,7 @@
                     <span>Lock Account</span>
                     <i class="mdi mdi-lock ml-1"></i>
                   </a>
-                  <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="#">
+                  <a class="dropdown-item py-1 d-flex align-items-center justify-content-between" href="{% url 'logout_view' %}">
                     <span>Log Out</span>
                     <i class="mdi mdi-logout ml-1"></i>
                   </a>
@@ -271,6 +271,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href=" {% url 'my_appointments' %} ">
+                <span class="icon-bg"><i class="mdi mdi-contacts menu-icon"></i></span>
+                <span class="menu-title">Appointments</span>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href=" {% url 'works' %} ">
                 <span class="icon-bg"><i class="mdi mdi-format-list-bulleted menu-icon"></i></span>
                 <span class="menu-title">Works</span>
@@ -343,7 +349,7 @@
             </li>
             <li class="nav-item sidebar-user-actions">
               <div class="sidebar-user-menu">
-                <a href="#" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
+                <a href="{% url 'logout_view' %}" class="nav-link"><i class="mdi mdi-logout menu-icon"></i>
                   <span class="menu-title">Log Out</span></a>
               </div>
             </li>

@@ -1,0 +1,71 @@
+{% extends "workmanager/base.html" %}
+{%load crispy_forms_tags %}
+{% block content %}
+<div class="content-wrapper">
+<!--            <div class="page-header">page-header-->
+<!--              <h3 class="page-title"> Form elements </h3>-->
+<!--              <nav aria-label="breadcrumb">-->
+<!--                <ol class="breadcrumb">-->
+<!--                  <li class="breadcrumb-item"><a href="#">Forms</a></li>-->
+<!--                  <li class="breadcrumb-item active" aria-current="page">Form elements</li>-->
+<!--                </ol>-->
+<!--              </nav>-->
+<!--            </div>-->
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                      <h2>My Bookings</h2>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Employee</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Starting time</th>
+                            <th scope="col">Ending time</th>
+                            <th scope="col">Appointment status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in data %}
+                          <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{i.worker}}</td>
+                            <td>{{i.schedule.user}}</td>
+                            <td>{{i.schedule.date}}</td>
+                            <td>{{i.schedule.start_time}}</td>
+                            <td>{{i.schedule.end_time}}</td>
+                            <td>
+                              {% if i.status == 0 %}
+                              <button type="button" class="btn btn-warning">Pending</button>
+                                  {% elif i.status == 1 %}
+                                      <button type="button" class="btn btn-success">Confirmed</button>
+                              {% else %}
+                                      <button type="button" class="btn btn-danger">Rejected</button>
+                              {% endif %}
+                              </td>
+                              <td>
+                                  <form method="post" action="{% url 'accept_app' i.id %}">
+                                  {% csrf_token %}
+                                  <input class="btn btn-primary" type="Submit" value="Accept">
+                                  </form>
+                              </td>
+                              <td>
+                                  <form method="post" action="{% url 'reject_app' i.id %}">
+                                  {% csrf_token %}
+                                  <input class="btn btn-primary" type="Submit" value="Reject">
+                                  </form>
+                              </td>
+                          </tr>
+
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}

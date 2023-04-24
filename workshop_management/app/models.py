@@ -27,6 +27,7 @@ class WorkSchedule(models.Model):
     date = models.DateField(null=True, blank=True)
     start_time = models.TimeField()
     end_time = models.TimeField()
+    customer = models.CharField(max_length=20, null=True, blank=True)
 
 # class Customer(models.Model):
 #     user = models.ForeignKey(Login, on_delete=models.CASCADE)
@@ -54,3 +55,9 @@ class Feedback(models.Model):
     date = models.DateField(auto_now=True)
     message = models.CharField(max_length=150)
     reply = models.CharField(max_length=150, null=True, blank=True)
+
+
+class BookAppointment(models.Model):
+    schedule = models.ForeignKey(WorkSchedule, on_delete=models.DO_NOTHING)
+    worker = models.ForeignKey(Login, on_delete=models.DO_NOTHING)
+    status = models.IntegerField(default=0, null=True)

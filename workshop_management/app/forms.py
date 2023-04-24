@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from app.models import Login, Feedback, WorkSchedule
+from app.models import Login, Feedback, WorkSchedule, BookAppointment
 
 from app.models import WorkerCategory
 from django.contrib.admin import widgets
@@ -65,5 +65,10 @@ class ScheduleWork(forms.ModelForm):
 
     class Meta:
         model = WorkSchedule
-        fields = ('date', 'start_time', 'end_time', )
+        fields = ('date', 'start_time', 'end_time',)
 
+
+class AppointmentForm(forms.ModelForm):
+    class Meta:
+        model = BookAppointment
+        fields = ('schedule',)
