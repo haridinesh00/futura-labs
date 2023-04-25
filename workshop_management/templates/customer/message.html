@@ -1,0 +1,8 @@
+{% extends "customer/base.html" %}
+{%load crispy_forms_tags %}
+{% block content %}
+
+<script>
+  alert('{{ message.value() }}')
+</script>
+{% endblock %}

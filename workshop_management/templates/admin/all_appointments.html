@@ -1,4 +1,4 @@
-{% extends "customer/base.html" %}
+{% extends "admin/base_admin.html" %}
 {%load crispy_forms_tags %}
 {% block content %}
 <div class="content-wrapper">
@@ -15,13 +15,13 @@
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                      <h2>Bookings</h2>
-
+                      <h2>My Bookings</h2>
                       <table class="table">
                         <thead>
                           <tr>
                             <th scope="col">No.</th>
-                            <th scope="col">Name</th>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Employee</th>
                             <th scope="col">Date</th>
                             <th scope="col">Starting time</th>
                             <th scope="col">Ending time</th>
@@ -33,6 +33,7 @@
                           <tr>
                             <td>{{forloop.counter}}</td>
                             <td>{{i.customer}}</td>
+                            <td>{{i.schedule.user}}</td>
                             <td>{{i.schedule.date}}</td>
                             <td>{{i.schedule.start_time}}</td>
                             <td>{{i.schedule.end_time}}</td>
@@ -45,7 +46,25 @@
                                       <button type="button" class="btn btn-danger">Rejected</button>
                               {% endif %}
                               </td>
+                              <td>
+                                  <form method="post" action="{% url 'accept_app' i.id %}">
+                                  {% csrf_token %}
+                                  <input class="btn btn-primary" type="Submit" value="Accept">
+                                  </form>
+                              </td>
+                              <td>
+                                  <form method="post" action="{% url 'reject_app' i.id %}">
+                                  {% csrf_token %}
+                                  <input class="btn btn-primary" type="Submit" value="Reject">
+                                  </form>
+                              </td>
+                              <td>
+                                  <a href="{% url 'generate_bill' i.id %}">
+                                        <input class="btn btn-primary" type="button" value="Generate Bill">
+                                    </a>
+                              </td>
                           </tr>
+
                           {% endfor %}
                         </tbody>
                       </table>

@@ -59,5 +59,19 @@ class Feedback(models.Model):
 
 class BookAppointment(models.Model):
     schedule = models.ForeignKey(WorkSchedule, on_delete=models.DO_NOTHING)
-    worker = models.ForeignKey(Login, on_delete=models.DO_NOTHING)
+    customer = models.ForeignKey(Login, on_delete=models.DO_NOTHING)
     status = models.IntegerField(default=0, null=True)
+
+
+class Bill(models.Model):
+    work_done = models.CharField(max_length=100)
+    bill = models.FloatField(max_length=10)
+    date = models.DateField(null=True, blank=True)
+    appoint = models.ForeignKey(BookAppointment, on_delete=models.DO_NOTHING, null=True, blank=True)
+    status = models.IntegerField(default=0, null=True)
+
+
+class Payment(models.Model):
+    card_num = models.IntegerField(max_length=16)
+    expiry_date = models.DateField(null=True, blank=True)
+    cvv = models.IntegerField(max_length=3)

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from app.models import Login, Feedback, WorkSchedule, BookAppointment
+from app.models import Login, Feedback, WorkSchedule, BookAppointment, Bill, Payment
 
 from app.models import WorkerCategory
 from django.contrib.admin import widgets
@@ -72,3 +72,15 @@ class AppointmentForm(forms.ModelForm):
     class Meta:
         model = BookAppointment
         fields = ('schedule',)
+
+
+class BillGenerate(forms.ModelForm):
+    class Meta:
+        model = Bill
+        fields = ('work_done', 'bill', 'date',)
+
+
+class PaymentForm(forms.ModelForm):
+    class Meta:
+        model = Payment
+        fields = ('card_num', 'expiry_date', 'cvv',)

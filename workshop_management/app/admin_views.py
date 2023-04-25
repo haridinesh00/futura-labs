@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 
-from app.forms import WorkerForm, WorkerCategoryForm
-from app.models import Login, Feedback, WorkerCategory, WorkSchedule
+from app.forms import WorkerForm, WorkerCategoryForm, BillGenerate
+from app.models import Login, Feedback, WorkerCategory, WorkSchedule, BookAppointment, Bill
 
 
 def dash(request):
@@ -107,3 +107,27 @@ def reject(request, id):
     data.status = 2
     data.save()
     return redirect('admin_workers')
+
+
+def all_appointments(request):
+    data = BookAppointment.objects.all()
+    return render(request, 'admin/all_appointments.html', {'data': data})
+
+
+def generate_bill(request, id):
+    bill_form = BillGenerate()
+    appoint = BookAppointment.objects.get(id=id)
+    check = Bill.objects.filter(appoint=appoint)
+    if check.exists():
+        messages.info(request, 'Already exists ')
+        return redirect('all_appointments')
+    else:
+        if request.method == 'POST':
+            bill_form = BillGenerate(request.POST)
+            if bill_form.is_valid():
+                user = bill_form.save(commit=False)
+                user.appoint = appoint
+                print(appoint)
+                user.save()
+                return redirect('all_appointments')
+    return render(request, 'admin/generate_bill.html', {'bill_form': bill_form})

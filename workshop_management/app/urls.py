@@ -40,6 +40,8 @@ urlpatterns = [
     path('category_register', admin_views.category_register, name="category_register"),
     path('worker_register', admin_views.worker_register, name="worker_register"),
     path('worker_schedules', admin_views.worker_schedules, name="worker_schedules"),
+    path('all_appointments', admin_views.all_appointments, name="all_appointments"),
+    path('generate_bill/<int:id>/', admin_views.generate_bill, name="generate_bill"),
     # path('accept/<int:id>/', admin_views.accept, name="accept"),
     # path('reject/<int:id>/', admin_views.reject, name="reject"),
     # path('new_request', admin_views.new_request, name="new_request"),
@@ -52,8 +54,11 @@ urlpatterns = [
     path('book_app', customer_views.book_app, name="book_app"),
     path('book/<int:id>/', customer_views.book, name="book"),
     path('appointment/<int:id>/', customer_views.appointment, name="appointment"),
+    path('pay_bill/<int:id>/', customer_views.pay_bill, name="pay_bill"),
     path('book_history', customer_views.book_history, name="book_history"),
     path('confirm_app', customer_views.confirm_app, name="confirm_app"),
+    path('my_bills', customer_views.my_bills, name="my_bills"),
+    path('message_view/<str:message>/', customer_views.message_view, name="message_view"),
 
 
     #work manager
