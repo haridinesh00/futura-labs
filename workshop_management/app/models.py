@@ -61,6 +61,7 @@ class BookAppointment(models.Model):
     schedule = models.ForeignKey(WorkSchedule, on_delete=models.DO_NOTHING)
     customer = models.ForeignKey(Login, on_delete=models.DO_NOTHING)
     status = models.IntegerField(default=0, null=True)
+    completed = models.IntegerField(default=0, null=True)
 
 
 class Bill(models.Model):

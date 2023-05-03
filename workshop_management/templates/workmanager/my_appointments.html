@@ -2,15 +2,6 @@
 {%load crispy_forms_tags %}
 {% block content %}
 <div class="content-wrapper">
-<!--            <div class="page-header">page-header-->
-<!--              <h3 class="page-title"> Form elements </h3>-->
-<!--              <nav aria-label="breadcrumb">-->
-<!--                <ol class="breadcrumb">-->
-<!--                  <li class="breadcrumb-item"><a href="#">Forms</a></li>-->
-<!--                  <li class="breadcrumb-item active" aria-current="page">Form elements</li>-->
-<!--                </ol>-->
-<!--              </nav>-->
-<!--            </div>-->
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
@@ -47,6 +38,15 @@
                               {% endif %}
                               </td>
                               <td>
+                                  {% if i.completed == 0 and i.status == 1 %}
+                                  <form method="post" action="{% url 'work_done' i.id %}">
+                                  {% csrf_token %}
+                                  <input class="btn btn-primary" type="Submit" value="Done">
+                                  </form>
+                                  {% endif %}
+                              </td>
+                              {% if i.status == 0 %}
+                              <td>
                                   <form method="post" action="{% url 'accept_app' i.id %}">
                                   {% csrf_token %}
                                   <input class="btn btn-primary" type="Submit" value="Accept">
@@ -58,6 +58,12 @@
                                   <input class="btn btn-primary" type="Submit" value="Reject">
                                   </form>
                               </td>
+                              {% endif %}
+                              {% if i.completed == 1 %}
+                              <td>
+                                  <button type="button" class="btn btn-success">Work Completed</button>
+                              </td>
+                              {% endif %}
                           </tr>
 
                           {% endfor %}

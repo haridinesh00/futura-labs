@@ -1,8 +1,15 @@
 {% extends "customer/base.html" %}
 {%load crispy_forms_tags %}
 {% block content %}
-
-<script>
-  alert('{{ message.value() }}')
-</script>
+<div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h1>Payment Successful</h1>
+                  </div>
+                </div>
+            </div>
+        </div>
+</div>
 {% endblock %}

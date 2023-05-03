@@ -115,7 +115,7 @@ def customer_register(request):
             user = customer_form.save(commit=False)
             user.is_customer = True
             user.save()
-            messages.info(request, 'Worker Registration Successful')
+            messages.info(request, 'Customer Registration Successful')
             return redirect('login_view')
     return render(request, 'dashboard/customer_register.html', {'customer_form': customer_form})
 

@@ -55,10 +55,11 @@ urlpatterns = [
     path('book/<int:id>/', customer_views.book, name="book"),
     path('appointment/<int:id>/', customer_views.appointment, name="appointment"),
     path('pay_bill/<int:id>/', customer_views.pay_bill, name="pay_bill"),
+    path('pay_by_cash/<int:id>/', customer_views.pay_by_cash, name="pay_by_cash"),
     path('book_history', customer_views.book_history, name="book_history"),
     path('confirm_app', customer_views.confirm_app, name="confirm_app"),
     path('my_bills', customer_views.my_bills, name="my_bills"),
-    path('message_view/<str:message>/', customer_views.message_view, name="message_view"),
+    path('message_view', customer_views.message_view, name="message_view"),
 
 
     #work manager
@@ -71,6 +72,7 @@ urlpatterns = [
     path('update_sch/<int:id>/', workmanager_views.update_sch, name="update_sch"),
     path('accept_app/<int:id>/', workmanager_views.accept_app, name="accept_app"),
     path('reject_app/<int:id>/', workmanager_views.reject_app, name="reject_app"),
+    path('work_done/<int:id>/', workmanager_views.work_done, name="work_done"),
 
 ]
 

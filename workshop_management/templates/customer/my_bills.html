@@ -24,12 +24,25 @@
                             <td>{{i.work_done}}</td>
                             <td>{{i.bill}}</td>
                             <td>{{i.date}}</td>
-                            <td>{{i.date}}</td>
+                              {% if i.status == 0 %}
                             <td>
                                 <a href="{% url 'pay_bill' i.id %}">
-                                        <input class="btn btn-primary" type="Submit" value="Pay">
+                                        <input class="btn btn-primary" type="Submit" value="Pay online">
                                 </a>
                             </td>
+                              <td>
+                                  <form method="post" action="{% url 'pay_by_cash' i.id %}">
+                                      {% csrf_token %}
+                                        <input class="btn btn-primary" type="Submit" value="Pay cash">
+                                  </form>
+                            </td>
+                              {% else %}
+                              <td>
+                                  <a href="#">
+                                        <input class="btn btn-primary" type="Button" value="Already Paid">
+                                </a>
+                              </td>
+                              {% endif %}
                           </tr>
                           {% endfor %}
                         </tbody>

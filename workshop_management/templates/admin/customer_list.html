@@ -2,7 +2,12 @@
 {%load crispy_forms_tags %}
 {% block content %}
 
-<table class="table">
+<div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                        <table class="table">
                           <thead>
                             <tr>
                                 <th scope="col">Profile Pic</th>
@@ -33,4 +38,9 @@
                             {% endfor %}
                           </tbody>
                         </table>
+                      </div>
+                </div>
+            </div>
+        </div>
+</div>
 {% endblock %}

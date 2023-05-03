@@ -2,15 +2,6 @@
 {%load crispy_forms_tags %}
 {% block content %}
 <div class="content-wrapper">
-<!--            <div class="page-header">page-header-->
-<!--              <h3 class="page-title"> Form elements </h3>-->
-<!--              <nav aria-label="breadcrumb">-->
-<!--                <ol class="breadcrumb">-->
-<!--                  <li class="breadcrumb-item"><a href="#">Forms</a></li>-->
-<!--                  <li class="breadcrumb-item active" aria-current="page">Form elements</li>-->
-<!--                </ol>-->
-<!--              </nav>-->
-<!--            </div>-->
         <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
@@ -26,6 +17,7 @@
                             <th scope="col">Starting time</th>
                             <th scope="col">Ending time</th>
                             <th scope="col">Appointment status</th>
+                            <th scope="col">Work Completed</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -46,6 +38,15 @@
                                       <button type="button" class="btn btn-danger">Rejected</button>
                               {% endif %}
                               </td>
+
+                              <td>
+                                  {% if i.completed == 1 %}
+                                  <button type="button" class="btn btn-success">Completed</button>
+                                  {% else %}
+                                  <button type="button" class="btn btn-danger">Not Completed</button>
+                                  {% endif %}
+                              </td>
+                              {% if i.completed == 0 %}
                               <td>
                                   <form method="post" action="{% url 'accept_app' i.id %}">
                                   {% csrf_token %}
@@ -58,11 +59,13 @@
                                   <input class="btn btn-primary" type="Submit" value="Reject">
                                   </form>
                               </td>
+                              {% else %}
                               <td>
                                   <a href="{% url 'generate_bill' i.id %}">
                                         <input class="btn btn-primary" type="button" value="Generate Bill">
                                     </a>
                               </td>
+                              {% endif %}
                           </tr>
 
                           {% endfor %}
