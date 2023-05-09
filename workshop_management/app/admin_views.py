@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.views.decorators.cache import cache_control
-
+from django.db.models import Q
 from app.forms import WorkerForm, WorkerCategoryForm, BillGenerate
 from app.models import Login, Feedback, WorkerCategory, WorkSchedule, BookAppointment, Bill
 
@@ -163,3 +163,19 @@ def generate_bill(request, id):
                 user.save()
                 return redirect('all_appointments')
     return render(request, 'admin/generate_bill.html', {'bill_form': bill_form})
+
+
+def search(request):
+
+    results = []
+
+    if request.method == "GET":
+        query = request.GET.get('search')
+
+        if query == '':
+            query = 'None'
+
+        results = Login.objects.filter(
+            Q(username__icontains=query) | Q(name__icontains=query) | Q(address__icontains=query) | Q(email__icontains=query) | Q(phone__icontains=query))
+
+    return render(request, 'admin/search.html', {'query': query, 'results': results})

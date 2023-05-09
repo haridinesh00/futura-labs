@@ -2,7 +2,7 @@
 {%load crispy_forms_tags %}
 {% block content %}
 
-<div class="content-wrapper">
+<div class="card">
     <form action="{% url 'search' %}" class="form-inline" method="get">
        <div class="form-group mx-sm-3 mb-2">
         <label for="" class="sr-only">search</label>
@@ -10,21 +10,8 @@
         </div>
         <button type="submit" class="btn btn-success btn-lg mb-2">Search</button>
    </form>
-        <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-                <div class="card">
-                    {% if messages %}
-                      {% for message in messages %}
-                        <div class="alert alert-dismissible alert-success">
-                          <button type="button" class="close" data-dismiss="alert">
-                          ×
-                          </button>
-                          <strong>{{message}}</strong>
-                        </div>
-                     {% endfor %}
-                    {% endif %}
-                  <div class="card-body">
-                        <table class="table">
+  <div class="card-body">
+      <table class="table">
                           <thead>
                             <tr>
                                 <th scope="col">Profile Pic</th>
@@ -39,7 +26,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                            {% for i in data %}
+                            {% for i in results %}
                             <tr>
                                 {% if i.is_worker %}
                                 {% if i.profile_pic %}
@@ -51,11 +38,7 @@
                               <th scope="row">{{i.gender}}</th>
                               <th scope="row">{{i.address}}</th>
                               <th scope="row">{{i.category}}</th>
-<!--                                {% if i.status == 0 %}-->
-<!--                                <th scope="row">Not Accepted</th>-->
-<!--                                {% else %}-->
-<!--                                <th scope="row">Accepted</th>-->
-<!--                                {% endif %}-->
+
                               <th scope="row">
                                   <a href="{% url 'update' i.id %}">
                                       <button type="button" class="btn btn-primary">Update</button>
@@ -72,9 +55,6 @@
                             {% endfor %}
                           </tbody>
                         </table>
-                      </div>
-                </div>
-            </div>
-        </div>
+  </div>
 </div>
 {% endblock %}

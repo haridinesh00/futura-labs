@@ -42,6 +42,7 @@ urlpatterns = [
     path('worker_schedules', admin_views.worker_schedules, name="worker_schedules"),
     path('all_appointments', admin_views.all_appointments, name="all_appointments"),
     path('generate_bill/<int:id>/', admin_views.generate_bill, name="generate_bill"),
+    path('search', admin_views.search, name="search"),
     # path('accept/<int:id>/', admin_views.accept, name="accept"),
     # path('reject/<int:id>/', admin_views.reject, name="reject"),
     # path('new_request', admin_views.new_request, name="new_request"),
