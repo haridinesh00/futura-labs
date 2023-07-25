@@ -6,9 +6,11 @@ from rest_framework.authtoken.admin import User
 
 
 class DistrictSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
     class Meta:
         model = District
-        fields = ['subject', 'description']
+        fields = ['id', 'subject', 'description']
 
 
 class UserSerializer(serializers.ModelSerializer):

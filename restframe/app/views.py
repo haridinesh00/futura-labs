@@ -29,6 +29,13 @@ def getdata(request):
     return Response(serializer.data)
 
 
+@api_view(['PUT'])
+def getdatabyid(request, id):
+    data = District.objects.filter(id=id)
+    serializer = DistrictSerializer(data, many=True)
+    return Response(serializer.data)
+
+
 @api_view(['POST'])
 def RegisterUser(request):
     serializer = UserSerializer()
@@ -54,3 +61,10 @@ def district_update(request, id):
         serializer.save()
         return Response(serializer.data)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['DELETE'])
+def district_delete(request, id):
+    data = District.objects.get(id=id)
+    data.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
