@@ -1,0 +1,38 @@
+/* AddData.css */
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('https://i.pinimg.com/originals/ac/54/a1/ac54a128942c750799c2c1fe144d2467.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+.form-container {
+    margin: 20vh auto; /* Center the form vertically and horizontally */
+    max-width: 400px; /* Adjust the maximum width as needed */
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .form-title {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .my-form {
+    margin-top: 3rem;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .btn-primary {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  

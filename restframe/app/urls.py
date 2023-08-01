@@ -1,6 +1,7 @@
 from django.urls import path
 
 from app import views
+from app.views import QuestionList, SnippetList
 
 urlpatterns = [
     path('district_add/', views.district_add, name="district_add"),
@@ -8,4 +9,6 @@ urlpatterns = [
     path('district_update/<int:id>', views.district_update, name="district_update"),
     path('district_delete/<int:id>', views.district_delete, name="district_delete"),
     path('getdatabyid/<int:id>', views.getdatabyid, name="getdatabyid"),
+    path('question_list/', QuestionList.as_view()),
+    path('question_gen/', SnippetList.as_view()),
     ]

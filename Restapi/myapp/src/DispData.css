@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Ensure the body takes up full viewport height */
+  background-image: url("/home/hari/Downloads/pexels-content-pixie-2736499.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.button-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+table {
+  font-size: 18px; /* Change the value as needed */
+}
+/* Align the buttons on the same line */
+.button-cell button {
+  margin-right: 20px; /* Add spacing between the buttons if needed */
+}
+.listed {
+    margin-top: 5rem;
+}
