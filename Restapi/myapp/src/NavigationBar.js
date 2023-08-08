@@ -8,9 +8,9 @@ function NavigationBar() {
     <>
     <Navbar bg="light" data-bs-theme="light">
         <Container>
-          <Navbar.Brand href="#home">ToDo App</Navbar.Brand>
+          <Navbar.Brand href="/">ToDo App</Navbar.Brand>
           <Nav className="me-auto">
-          <Nav.Link href="#pricing">Home</Nav.Link>
+          <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/page1">Add Item</Nav.Link>
             <Nav.Link href="/page2">View Items</Nav.Link>
           </Nav>
